@@ -1,12 +1,25 @@
 @extends('layouts.layoutMaster')
 
 @section('content')
-<div class="container py-4">
-    <h3 class="fw-bold mb-3">Absensi</h3>
 
-    {{-- 🔘 Tombol Absensi --}}
-    <div class="card p-4 shadow-sm mb-4 text-center">
-        <h5 class="fw-semibold mb-3">Absensi Hari Ini</h5>
+<!-- Dashboard Header -->
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Absensi</h1>
+  <div class="dashboard-subtitle">
+    <i class="ri-calendar-check-line"></i>
+    <span>Manage daily attendance and overtime records</span>
+  </div>
+</div>
+
+<!-- Absensi Buttons Card -->
+<div class="activity-card mb-4">
+    <div class="activity-header">
+        <div class="activity-title">
+            <i class="ri-time-line"></i>
+            Absensi Hari Ini
+        </div>
+    </div>
+    <div class="p-4">
         <div class="d-flex flex-column flex-md-row justify-content-center gap-3 flex-wrap">
             <button class="btn btn-primary btn-lg px-5" onclick="openModal('checkin')">Check In</button>
             <button class="btn btn-danger btn-lg px-5" onclick="openModal('checkout')">Check Out</button>
@@ -14,12 +27,18 @@
             <button class="btn btn-success btn-lg px-5" onclick="openModal('lembur_out')">Selesai Lembur</button>
         </div>
     </div>
+</div>
 
-    {{-- 🧾 Log Absensi --}}
-    <div class="card p-4 shadow-sm">
-        <h5 class="fw-semibold mb-3">Log Absensi</h5>
-         <div class="card-datatable table-responsive">
-    <table class="datatables-users table">
+<!-- Activity Card for Log -->
+<div class="activity-card">
+    <div class="activity-header">
+        <div class="activity-title">
+            <i class="ri-file-list-3-line"></i>
+            Log Absensi
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="datatables-users table">
 
 
             <thead class="table-light">
@@ -129,11 +148,10 @@
 </tr>
 @endforelse
 </tbody>
-
         </table>
     </div>
 </div>
-</div>
+<!-- End Activity Card -->
 
 {{-- 🗺️ Modal Absensi --}}
 <div class="modal fade" id="absenModal" tabindex="-1" aria-hidden="true">

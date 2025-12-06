@@ -82,18 +82,30 @@ document.addEventListener("DOMContentLoaded", function() {
 @endsection
 
 @section('content')
-<div class="card">
-  <div class="card-header d-flex justify-content-between align-items-center">
-    <h5 class="card-title mb-0">Data Barang Keluar</h5>
 
-    <div>
-      <a href="{{ route('create.barangmasuk') }}" class="btn btn-primary me-2">
-        <i class="ri-add-line me-1"></i> Tambah Barang Masuk
+<!-- Dashboard Header -->
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Data Barang Masuk</h1>
+  <div class="dashboard-subtitle">
+    <i class="ri-inbox-line"></i>
+    <span>Track incoming inventory and stock additions</span>
+  </div>
+</div>
+
+<!-- Activity Card -->
+<div class="activity-card">
+  <div class="activity-header">
+    <div class="activity-title">
+      <i class="ri-download-line"></i>
+      Daftar Barang Masuk
+    </div>
+    <div class="activity-filters">
+      <a href="{{ route('create.barangmasuk') }}" class="btn btn-primary">
+        <i class="ri-add-line"></i> Tambah Barang Masuk
       </a>
     </div>
   </div>
-
-  <div class="card-datatable table-responsive">
+  <div class="table-responsive">
     <table class="datatables-barang table">
       <thead>
         <tr>

@@ -138,15 +138,32 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 @section('content')
-<div class="card">
-  <div class="card-header border-bottom d-flex justify-content-between align-items-center">
-    <h5 class="card-title mb-0">Daftar Ticket</h5>
-    <a href="{{ route('tickets.creates') }}" class="btn btn-primary">
-      <i class="ri-add-line me-1"></i> Tambah Ticket
-    </a>
+
+<!-- Dashboard Header -->
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Ticket Support</h1>
+  <div class="dashboard-subtitle">
+    <i class="ri-customer-service-2-line"></i>
+    <span>Manage customer support tickets and technical issues</span>
+  </div>
+</div>
+
+<!-- Activity Card -->
+<div class="activity-card">
+  <div class="activity-header">
+    <div class="activity-title">
+      <i class="ri-ticket-line"></i>
+      Daftar Ticket
+    </div>
+    <div class="activity-filters">
+      <a href="{{ route('tickets.creates') }}" class="btn btn-primary">
+        <i class="ri-add-line"></i>
+        Tambah Ticket
+      </a>
+    </div>
   </div>
 
-  <div class="card-datatable table-responsive">
+  <div class="table-responsive">
     <table class="datatables-tickets table">
       <thead>
         <tr>
@@ -252,6 +269,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </table>
   </div>
 </div>
+<!-- End Activity Card -->
 
 <!-- Detail Modal -->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">

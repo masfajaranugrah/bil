@@ -180,44 +180,54 @@ updateExportInputs();
 
 {{-- CONTENT --}}
 @section('content')
-<div class="card mt-4">
-  <div class="card-header border-bottom d-flex justify-content-between align-items-center">
-    <h5 class="card-title mb-0">Daftar Tagihan</h5>
- <form id="formExport" action="{{ route('laporan.tagihan.export') }}" method="GET">
-  <input type="hidden" name="status" id="exportStatus">
-  <input type="hidden" name="kabupaten" id="exportKabupaten">
-  <input type="hidden" name="kecamatan" id="exportKecamatan">
-  <button type="submit" class="btn btn-success">
-    <i class="bi bi-file-earmark-excel"></i> Export Excel
-  </button>
-</form>
 
-
+<!-- Dashboard Header -->
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Laporan Tagihan</h1>
+  <div class="dashboard-subtitle">
+    <i class="ri-file-list-3-line"></i>
+    <span>View and export billing reports and analytics</span>
   </div>
+</div>
 
- <div class="card-body">
-  <div class="row g-3 mb-3">
-    <div class="col-md-4">
-      <label for="filterKecamatan" class="form-label">Filter Kecamatan</label>
-      <select id="filterKecamatan" class="form-select form-select-sm">
+<!-- Filters Section -->
+<div class="filters-section">
+  <div class="filters-header">
+    <div class="filters-title">
+      <i class="ri-filter-3-line"></i>
+      Filter Laporan
+    </div>
+    <form id="formExport" action="{{ route('laporan.tagihan.export') }}" method="GET">
+      <input type="hidden" name="status" id="exportStatus">
+      <input type="hidden" name="kabupaten" id="exportKabupaten">
+      <input type="hidden" name="kecamatan" id="exportKecamatan">
+      <button type="submit" class="btn btn-success">
+        <i class="ri-file-excel-line"></i> Export Excel
+      </button>
+    </form>
+  </div>
+  <div class="filters-grid mt-3">
+    <div class="filter-group">
+      <label for="filterKecamatan">Filter Kecamatan</label>
+      <select id="filterKecamatan" class="form-select">
         <option value="">-- Semua Kecamatan --</option>
         @foreach($kecamatans as $kecamatan)
           <option value="{{ $kecamatan }}">{{ $kecamatan }}</option>
         @endforeach
       </select>
     </div>
-    <div class="col-md-4">
-      <label for="filterKabupaten" class="form-label">Filter Kabupaten</label>
-      <select id="filterKabupaten" class="form-select form-select-sm">
+    <div class="filter-group">
+      <label for="filterKabupaten">Filter Kabupaten</label>
+      <select id="filterKabupaten" class="form-select">
         <option value="">-- Semua Kabupaten --</option>
         @foreach($kabupatens as $kabupaten)
           <option value="{{ $kabupaten }}">{{ $kabupaten }}</option>
         @endforeach
       </select>
     </div>
-    <div class="col-md-4">
-      <label for="filterStatus" class="form-label">Filter Status Pembayaran</label>
-      <select id="filterStatus" class="form-select form-select-sm">
+    <div class="filter-group">
+      <label for="filterStatus">Filter Status Pembayaran</label>
+      <select id="filterStatus" class="form-select">
         <option value="">-- Semua Status --</option>
         <option value="lunas">Lunas</option>
         <option value="belum bayar">Belum Lunas</option>
@@ -226,8 +236,15 @@ updateExportInputs();
   </div>
 </div>
 
-
-  <div class="card-datatable table-responsive">
+<!-- Activity Card -->
+<div class="activity-card">
+  <div class="activity-header">
+    <div class="activity-title">
+      <i class="ri-file-list-3-line"></i>
+      Data Laporan Tagihan
+    </div>
+  </div>
+  <div class="table-responsive">
     <table class="datatables-tagihan table">
       <thead>
         <tr>
@@ -280,6 +297,7 @@ updateExportInputs();
     </table>
   </div>
 </div>
+<!-- End Activity Card -->
 
 <!-- Modal Detail -->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
@@ -298,4 +316,7 @@ updateExportInputs();
     </div>
   </div>
 </div>
-@endsection
+</div>
+<!-- End Filters and Activity Card -->
+
+<!-- Detail Modal -->

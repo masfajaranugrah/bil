@@ -24,6 +24,52 @@
 @yield('page-script')
 <!-- END: Page JS-->
 
+<!-- Force Sidebar Default State -->
+<script>
+// CRITICAL: Force sidebar expanded state immediately
+(function() {
+  'use strict';
+  
+  console.log('Forcing sidebar expanded state...');
+  
+  // Remove collapsed class immediately
+  const sidebar = document.querySelector('#layout-menu');
+  if (sidebar) {
+    sidebar.classList.remove('collapsed');
+    sidebar.style.width = '260px';
+    console.log('Sidebar expanded, width set to 260px');
+    
+    // Force all menu text to show
+    const menuTexts = sidebar.querySelectorAll('.menu-link > div');
+    menuTexts.forEach(text => {
+      text.style.opacity = '1';
+      text.style.width = 'auto';
+      text.style.display = 'inline-block';
+      text.style.visibility = 'visible';
+    });
+    console.log('Menu texts visibility forced:', menuTexts.length);
+  }
+  
+  // Set layout page padding
+  const layoutPage = document.querySelector('.layout-page');
+  if (layoutPage) {
+    layoutPage.style.paddingLeft = '260px';
+  }
+  
+  // Clear any collapsed state in localStorage
+  localStorage.removeItem('sidebarCollapsed');
+  localStorage.setItem('sidebarCollapsed', 'false');
+  
+  console.log('Sidebar initialization complete');
+})();
+</script>
+
+<!-- Sidebar Collapse Script -->
+<script src="{{ asset('assets/js/sidebar-collapse.js') }}?v={{ time() }}"></script>
+
+<!-- Sequence Sidebar Script -->
+<script src="{{ asset('assets/js/sequence-sidebar.js') }}?v={{ time() }}"></script>
+
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];

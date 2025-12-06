@@ -127,15 +127,30 @@ $(document).on('click', '.btn-detail, td.control', function() {
 
 {{-- CONTENT --}}
 @section('content')
-<div class="card">
-   <div class="card-header border-bottom d-flex justify-content-between align-items-center">
-    <h5 class="card-title mb-0">Data Karyawan</h5>
-    <a href="{{ route('karyawan.create') }}" class="btn btn-primary">
-      <i class="ri-user-add-line me-1"></i> Tambah Karyawan
-    </a>
-  </div>
 
-  <div class="card-datatable table-responsive">
+<!-- Dashboard Header -->
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Data Karyawan</h1>
+  <div class="dashboard-subtitle">
+    <i class="ri-user-settings-line"></i>
+    <span>Manage employee information and records</span>
+  </div>
+</div>
+
+<!-- Activity Card -->
+<div class="activity-card">
+  <div class="activity-header">
+    <div class="activity-title">
+      <i class="ri-team-line"></i>
+      Daftar Karyawan
+    </div>
+    <div class="activity-filters">
+      <a href="{{ route('karyawan.create') }}" class="btn btn-primary">
+        <i class="ri-user-add-line"></i> Tambah Karyawan
+      </a>
+    </div>
+  </div>
+  <div class="table-responsive">
     <table class="datatables-users table">
       <thead>
         <tr>
@@ -200,6 +215,7 @@ $(document).on('click', '.btn-detail, td.control', function() {
     </table>
   </div>
 </div>
+<!-- End Activity Card -->
 
 <!-- Modal Detail -->
 <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">

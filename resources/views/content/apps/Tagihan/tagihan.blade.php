@@ -283,131 +283,189 @@ $(document).on('shown.bs.modal', '[id^="modalEditTagihan-"]', function () {
 
 
 @section('content')
-<div class="row g-6">
 
-  <!-- Jumlah Customer -->
-  <div class="col-lg-3 col-sm-6">
-    <div class="card card-border-shadow-primary h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-primary d-flex justify-content-center align-items-center" style="width:40px; height:40px;">
-              <i class="bi bi-people" style="font-size:28px;"></i>
-            </span>
-          </div>
-          <h4 class="mb-0">{{ $totalCustomer }}</h4>
+<!-- Dashboard Header -->
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Dashboard</h1>
+  <div class="dashboard-subtitle">
+    <i class="ri-calendar-line"></i>
+    <span>Welcome back! Here's what's happening with your billing system.</span>
+    <span class="date-range-badge">
+      <i class="ri-calendar-2-line"></i>
+      {{ date('d M Y') }} - {{ date('d M Y', strtotime('+30 days')) }}
+    </span>
+  </div>
+</div>
+
+<!-- Total Balance Hero Card -->
+<div class="balance-hero-card">
+  <div class="balance-label">
+    <i class="ri-wallet-3-line"></i>
+    Total Pendapatan Bulan Ini
+  </div>
+  <div class="balance-amount">
+    Rp {{ number_format(($lunas ?? 0) * 250000, 0, ',', '.') }}
+  </div>
+  <div class="balance-change positive">
+    <i class="ri-arrow-up-line"></i>
+    <span>15.8%</span>
+  </div>
+  <div class="balance-actions">
+    <button class="balance-btn balance-btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahTagihan">
+      <i class="ri-add-line"></i>
+      Add Tagihan
+    </button>
+    <button class="balance-btn balance-btn-secondary" data-bs-toggle="modal" data-bs-target="#modalMassTagihan">
+      <i class="ri-refresh-line"></i>
+      Mass Tagihan
+    </button>
+  </div>
+</div>
+
+<!-- Stats Grid -->
+<div class="stats-grid">
+  <!-- Total Customer -->
+  <div class="stat-card">
+    <div class="stat-header">
+      <div>
+        <div class="stat-label">Total Customer</div>
+        <div class="stat-value">{{ number_format($totalCustomer ?? 0) }}</div>
+        <div class="stat-change positive">
+          <i class="ri-arrow-up-line"></i>
+          <span>46.0%</span>
         </div>
-        <p class="mb-1">Jumlah Customer</p>
-        <p class="mb-0"><span class="text-heading fw-medium me-2">+0%</span><small class="text-body-secondary">dari total</small></p>
       </div>
+      <div class="stat-icon income">
+        <i class="ri-group-line"></i>
+      </div>
+    </div>
+    <div class="stat-footer">
+      Seluruh pelanggan terdaftar
     </div>
   </div>
 
   <!-- Pembayaran Lunas -->
-  <div class="col-lg-3 col-sm-6">
-    <div class="card card-border-shadow-success h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-success d-flex justify-content-center align-items-center" style="width:40px; height:40px;">
-              <i class="bi bi-check-circle" style="font-size:28px;"></i>
-            </span>
-          </div>
-          <h4 class="mb-0">{{ $lunas }}</h4>
+  <div class="stat-card">
+    <div class="stat-header">
+      <div>
+        <div class="stat-label">Pembayaran Lunas</div>
+        <div class="stat-value">{{ number_format($lunas ?? 0) }}</div>
+        <div class="stat-change positive">
+          <i class="ri-arrow-up-line"></i>
+          <span>{{ $totalCustomer > 0 ? round($lunas / $totalCustomer * 100, 1) : 0 }}%</span>
         </div>
-        <p class="mb-1">Pembayaran Lunas</p>
-        <p class="mb-0"><span class="text-heading fw-medium me-2">{{ round($lunas / max($totalCustomer,1) * 100) }}%</span><small class="text-body-secondary">dari total</small></p>
       </div>
+      <div class="stat-icon income">
+        <i class="ri-checkbox-circle-line"></i>
+      </div>
+    </div>
+    <div class="stat-footer">
+      Tagihan yang sudah dibayar
     </div>
   </div>
 
-  <!-- Pembayaran Belum Lunas -->
-  <div class="col-lg-3 col-sm-6">
-    <div class="card card-border-shadow-warning h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-warning d-flex justify-content-center align-items-center" style="width:40px; height:40px;">
-              <i class="bi bi-exclamation-circle" style="font-size:28px;"></i>
-            </span>
-          </div>
-          <h4 class="mb-0">{{ $belumLunas }}</h4>
+  <!-- Belum Lunas -->
+  <div class="stat-card">
+    <div class="stat-header">
+      <div>
+        <div class="stat-label">Belum Lunas</div>
+        <div class="stat-value">{{ number_format($belumLunas ?? 0) }}</div>
+        <div class="stat-change negative">
+          <i class="ri-arrow-down-line"></i>
+          <span>{{ $totalCustomer > 0 ? round($belumLunas / $totalCustomer * 100, 1) : 0 }}%</span>
         </div>
-        <p class="mb-1">Pembayaran Belum Lunas</p>
-        <p class="mb-0"><span class="text-heading fw-medium me-2">{{ round($belumLunas / max($totalCustomer,1) * 100) }}%</span><small class="text-body-secondary">dari total</small></p>
       </div>
+      <div class="stat-icon expense">
+        <i class="ri-error-warning-line"></i>
+      </div>
+    </div>
+    <div class="stat-footer">
+      Tagihan yang belum dibayar
     </div>
   </div>
 
   <!-- Jumlah Paket -->
-  <div class="col-lg-3 col-sm-6">
-    <div class="card card-border-shadow-info h-100">
-      <div class="card-body">
-        <div class="d-flex align-items-center mb-2">
-          <div class="avatar me-4">
-            <span class="avatar-initial rounded bg-label-info d-flex justify-content-center align-items-center" style="width:40px; height:40px;">
-              <i class="bi bi-box-seam" style="font-size:28px;"></i>
-            </span>
-          </div>
-          <h4 class="mb-0">{{ $totalPaket }}</h4>
+  <div class="stat-card">
+    <div class="stat-header">
+      <div>
+        <div class="stat-label">Jumlah Paket</div>
+        <div class="stat-value">{{ number_format($totalPaket ?? 0) }}</div>
+        <div class="stat-change positive">
+          <i class="ri-arrow-up-line"></i>
+          <span>35.2%</span>
         </div>
-        <p class="mb-1">Jumlah Paket</p>
-        <p class="mb-0"><span class="text-heading fw-medium me-2">+0%</span><small class="text-body-secondary">dari total</small></p>
+      </div>
+      <div class="stat-icon saving">
+        <i class="ri-box-3-line"></i>
       </div>
     </div>
-  </div>
-
-</div>
-
-
-
-<!-- Daftar Tagihan -->
-<div class="card mt-4">
-  <div class="card-header border-bottom">
-    <div class="d-flex justify-content-between align-items-center row pt-4">
-      <div class="col-md-6"><h5 class="mb-0">Daftar Tagihan</h5></div>
-      <div class="col-md-6 text-md-end text-center">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahTagihan">
-         <i class="bi bi-plus" style="font-size: 1.5rem;" ></i> Tambah Tagihan
-
-        </button>
-        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalMassTagihan">
-  <i class="bi bi-people"></i> Buat Tagihan Semua Customer
-</button>
-
-      </div>
+    <div class="stat-footer">
+      Total paket tersedia
     </div>
-
- <div class="row g-3 mt-3">
-  <div class="col-md-3">
-    <select id="statusPembayaranFilter" class="form-select">
-      <option value="">Semua Status</option>
-      <option value="lunas">Sudah Lunas</option>
-      <option value="belum bayar">Belum Bayar</option>
-    </select>
-  </div>
-
-  <div class="col-md-3">
-    <select id="kabupatenFilter" class="form-select">
-      <option value="">Semua Kabupaten</option>
-      @foreach($kabupatenList as $kab)
-        <option value="{{ strtolower($kab) }}">{{ $kab }}</option>
-      @endforeach
-    </select>
-  </div>
-
-  <div class="col-md-3">
-    <select id="kecamatanFilter" class="form-select">
-      <option value="">Semua Kecamatan</option>
-      @foreach($kecamatanList as $kec)
-        <option value="{{ strtolower($kec) }}">{{ $kec }}</option>
-      @endforeach
-    </select>
   </div>
 </div>
 
+<!-- Filters Section -->
+<div class="filters-section">
+  <div class="filters-header">
+    <div class="filters-title">
+      <i class="ri-filter-3-line"></i>
+      Filter Data Tagihan
+    </div>
   </div>
-  <div class="card-datatable table-responsive">
+  <div class="filters-grid">
+    <div class="filter-group">
+      <label for="statusPembayaranFilter">Status Pembayaran</label>
+      <select id="statusPembayaranFilter" class="form-select">
+        <option value="">Semua Status</option>
+        <option value="lunas">Sudah Lunas</option>
+        <option value="belum bayar">Belum Bayar</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="kabupatenFilter">Kabupaten</label>
+      <select id="kabupatenFilter" class="form-select">
+        <option value="">Semua Kabupaten</option>
+        @foreach($kabupatenList as $kab)
+          <option value="{{ strtolower($kab) }}">{{ $kab }}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="kecamatanFilter">Kecamatan</label>
+      <select id="kecamatanFilter" class="form-select">
+        <option value="">Semua Kecamatan</option>
+        @foreach($kecamatanList as $kec)
+          <option value="{{ strtolower($kec) }}">{{ $kec }}</option>
+        @endforeach
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- Activity Card / Daftar Tagihan -->
+<div class="activity-card">
+  <div class="activity-header">
+    <div class="activity-title">
+      <i class="ri-file-list-3-line"></i>
+      Daftar Tagihan
+    </div>
+    <div class="activity-filters">
+      <button class="filter-btn active">
+        <i class="ri-file-list-line"></i>
+        Semua
+      </button>
+      <button class="filter-btn" onclick="window.location.href='{{ route('tagihan.lunas') }}'">
+        <i class="ri-check-line"></i>
+        Lunas
+      </button>
+      <button class="filter-btn" onclick="window.location.href='{{ route('tagihan.proses') }}'">
+        <i class="ri-time-line"></i>
+        Proses
+      </button>
+    </div>
+  </div>
+  <div class="table-responsive">
 <table class="datatables-users table">
   <thead>
     <tr>
@@ -545,9 +603,9 @@ $(document).on('shown.bs.modal', '[id^="modalEditTagihan-"]', function () {
     @endforeach
   </tbody>
 </table>
-
   </div>
 </div>
+<!-- End Activity Card -->
 
 <!-- Modal Tambah Tagihan -->
 <div class="modal fade" id="modalTambahTagihan" tabindex="-1" aria-labelledby="modalTambahTagihanLabel" aria-hidden="true">
@@ -799,7 +857,7 @@ $(document).on('shown.bs.modal', '[id^="modalEditTagihan-"]', function () {
           <div class="border rounded p-2 mb-3" style="max-height: 200px; overflow-y: auto;">
             @foreach ($pelanggan as $p)
               <div class="py-1 border-bottom small">
-                <strong>{{ $p->nomer_id }}</strong> — {{ $p->nama_lengkap }}
+                <strong>{{ $p->nomer_id }}</strong> ï¿½ {{ $p->nama_lengkap }}
               </div>
             @endforeach
           </div>

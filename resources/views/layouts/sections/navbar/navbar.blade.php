@@ -50,7 +50,7 @@ $navbarDetached = $navbarDetached ?? '';
         {{-- Style Switcher --}}
         @if($configData['hasCustomizer'])
           <li class="nav-item dropdown-style-switcher dropdown me-1 me-xl-0">
-            <a class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+            <a class="nav-link btn rounded-pill btn-icon dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" style="color: #0d9488;">
               <i class='ri-22px'></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
@@ -84,7 +84,7 @@ $navbarDetached = $navbarDetached ?? '';
 
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
           <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-            <div class="avatar avatar-online bg-primary text-white d-flex justify-content-center align-items-center rounded-circle" style="width: 40px; height: 40px;">
+            <div class="avatar avatar-online text-white d-flex justify-content-center align-items-center rounded-circle" style="width: 40px; height: 40px; background-color: #0d9488;">
               <span class="fw-bold">{{ $roleInitials }}</span>
             </div>
           </a>
@@ -95,7 +95,7 @@ $navbarDetached = $navbarDetached ?? '';
               <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
                 <div class="d-flex">
                   <div class="flex-shrink-0 me-2">
-                    <div class="avatar avatar-online bg-primary text-white d-flex justify-content-center align-items-center rounded-circle" style="width: 40px; height: 40px;">
+                    <div class="avatar avatar-online text-white d-flex justify-content-center align-items-center rounded-circle" style="width: 40px; height: 40px; background-color: #0d9488;">
                       <span class="fw-bold">{{ $roleInitials }} </span>
                     </div>
                   </div>

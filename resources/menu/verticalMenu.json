@@ -469,20 +469,20 @@
     {
       "name": "Tagihan",
       "icon": "menu-icon tf-icons ri-file-list-3-line",
-      "slug": "app-user",
+      "slug": "customer-tagihan",
       "roles": "customer",
       "submenu": [
         {
-          "url": "dashboard/customer/tagihan",
-          "name": "Tagihan",
-          "slug": "app-user-list",
+          "url": "/dashboard/customer/tagihan",
+          "name": "Tagihan Aktif",
+          "slug": "customer-tagihan-list",
           "roles": "customer",
           "icon": "ri-list-check"
         },
         {
           "url": "/dashboard/customer/tagihan/selesai",
           "name": "Tagihan Lunas",
-          "slug": "app-user-list",
+          "slug": "customer-tagihan-lunas",
           "roles": "customer",
           "icon": "ri-checkbox-circle-line"
         }
@@ -494,20 +494,18 @@
     },
     {
       "name": "Rekening",
-      "icon": "menu-icon tf-icons ri-file-list-3-line",
-      "slug": "app-user",
+      "icon": "menu-icon tf-icons ri-bank-card-line",
+      "slug": "rekening",
       "roles": "administrator",
       "submenu": [
         {
           "url": "/dashboard/admin/rekenings",
-          "name": "Rekening",
-          "slug": "app-user-list",
+          "name": "List Rekening",
+          "slug": "rekenings-list",
           "roles": "administrator",
           "icon": "ri-list-check"
         }
       ]
-    },
-    {},
-    {}
+    }
   ]
 }

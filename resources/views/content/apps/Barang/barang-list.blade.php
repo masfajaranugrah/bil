@@ -93,21 +93,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
 {{-- CONTENT --}}
 @section('content')
-<div class="card">
 
-  <div class="card-header d-flex justify-content-between align-items-center">
-    <h5 class="card-title mb-0">Data Barang</h5>
+<!-- Dashboard Header -->
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Data Barang</h1>
+  <div class="dashboard-subtitle">
+    <i class="ri-box-3-line"></i>
+    <span>Manage inventory items and stock levels</span>
+  </div>
+</div>
 
-    <div>
-      <a href="{{ route('add-barang') }}" class="btn btn-primary me-2">
-        <i class="ri-add-line me-1"></i> Tambah Barang
+<!-- Activity Card -->
+<div class="activity-card">
+  <div class="activity-header">
+    <div class="activity-title">
+      <i class="ri-archive-line"></i>
+      Daftar Barang
+    </div>
+    <div class="activity-filters">
+      <a href="{{ route('add-barang') }}" class="btn btn-primary">
+        <i class="ri-add-line"></i> Tambah Barang
       </a>
-
- 
     </div>
   </div>
-
-  <div class="card-datatable table-responsive">
+  <div class="table-responsive">
     <table class="datatables-barang table">
       <thead>
         <tr>
@@ -173,10 +182,10 @@ document.addEventListener("DOMContentLoaded", function() {
         </tr>
         @endforeach
       </tbody>
-
     </table>
   </div>
 </div>
+<!-- End Activity Card -->
 
 <!-- Modal Detail Barang -->
 <div class="modal fade" id="detailModal">

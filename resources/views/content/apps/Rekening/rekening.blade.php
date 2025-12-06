@@ -79,15 +79,31 @@ document.addEventListener("DOMContentLoaded", function() {
 @endsection
 
 @section('content')
-<!-- Rekening List Table -->
-<div class="card">
-  <div class="card-header border-bottom d-flex justify-content-between align-items-center">
-    <h5 class="card-title mb-0">Data Rekening</h5>
-    <a href="{{ route('rekenings.add') }}" class="btn btn-primary">
-      <i class="ri-add-line me-1"></i> Tambah Rekening
-    </a>
+
+<!-- Dashboard Header -->
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Data Rekening</h1>
+  <div class="dashboard-subtitle">
+    <i class="ri-bank-card-line"></i>
+    <span>Manage bank accounts for payment processing</span>
   </div>
-  <div class="card-datatable table-responsive">
+</div>
+
+<!-- Activity Card -->
+<div class="activity-card">
+  <div class="activity-header">
+    <div class="activity-title">
+      <i class="ri-bank-line"></i>
+      Daftar Rekening
+    </div>
+    <div class="activity-filters">
+      <a href="{{ route('rekenings.add') }}" class="btn btn-primary">
+        <i class="ri-add-line"></i>
+        Tambah Rekening
+      </a>
+    </div>
+  </div>
+  <div class="table-responsive">
     <table class="datatables-rekenings table">
       <thead>
         <tr>
@@ -119,4 +135,6 @@ document.addEventListener("DOMContentLoaded", function() {
     </table>
   </div>
 </div>
+<!-- End Activity Card -->
+
 @endsection

@@ -60,6 +60,17 @@ document.addEventListener('DOMContentLoaded', function() {
 @endsection
 
 @section('content')
+
+<!-- Dashboard Header -->
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Data Paket</h1>
+  <div class="dashboard-subtitle">
+    <i class="ri-folder-line"></i>
+    <span>Manage internet packages and pricing plans</span>
+  </div>
+</div>
+
+<!-- Paket Grid -->
 <div class="row gy-6">
   @if($pakets->isEmpty())
     <div class="col-12">

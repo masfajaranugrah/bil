@@ -29,3 +29,7 @@
 
 <!-- Page Styles -->
 @yield('page-style')
+
+<!-- Sequence Dashboard Theme -->
+<link rel="stylesheet" href="{{ asset('assets/css/sequence-dashboard.css') }}?v={{ time() }}">
+
