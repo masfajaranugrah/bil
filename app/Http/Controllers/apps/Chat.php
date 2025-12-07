@@ -9,6 +9,6 @@ class Chat extends Controller
 {
   public function index()
   {
-    return view('content.apps.app-chat');
+    return view('content.apps.chat.app-chat');
   }
 }

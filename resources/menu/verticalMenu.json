@@ -1,5 +1,33 @@
 {
   "menu": [
+       {
+      "menuHeader": "Chat Application",
+      "roles": [
+        "administrator",
+        "admin"
+      ]
+    },
+    {
+      "name": "chat",
+      "icon": "menu-icon tf-icons ri-team-line",
+      "slug": "app-user",
+      "roles": [
+        "administrator",
+        "admin"
+      ],
+      "submenu": [
+        {
+          "url": "/app/chat",
+          "name": "chat",
+          "slug": "app-user-list",
+          "roles": [
+            "administrator",
+            "admin"
+          ],
+          "icon": "ri-list-check"
+        }
+      ]
+    },
  {
       "menuHeader": "Data Tagihan",
       "roles": [
@@ -284,8 +312,8 @@
         }
       ]
     },
-   
-   
+
+
     {
       "menuHeader": "Absensi",
       "roles": "karyawan"
@@ -350,7 +378,7 @@
         }
       ]
     },
- 
+
     {
       "menuHeader": "Data Pekerjaan",
       "roles": "team"

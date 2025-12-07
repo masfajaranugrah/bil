@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\apps\Chat;
 
 use App\Http\Controllers\CustomerTagihanController;
 use App\Http\Controllers\EmployeeController;
@@ -372,3 +373,5 @@ Route::prefix('/dashboard/admin/barang-keluar')->group(function () {
     Route::delete('/{id}', [BarangKeluarController::class, 'destroy'])->name('delete.barangkeluar'); // Hapus Barang Keluar
 });
 
+
+Route::get('/app/chat', [Chat::class, 'index'])->name('app-chat');
